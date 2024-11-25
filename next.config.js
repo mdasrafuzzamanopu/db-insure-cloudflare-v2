@@ -60,6 +60,32 @@ const nextConfig = {
     MAXMIND_LICENSE_KEY: process.env.MAXMIND_LICENSE_KEY,
     IMAGE_SOURCE: process.env.IMAGE_SOURCE,
   },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all static assets
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // Cache for 1 year
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
+
+// In your index.js or any other SSR page
+export async function getServerSideProps({ res }) {
+  const homepageData = await fetchHomepageData();
+
+  // Set cache headers for SSR pages
+  res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
+
+  return {
+    props: homepageData,
+  };
+}

@@ -16,7 +16,6 @@ import { featuredItems2Props } from "../data/featuredItemsData";
 import { fetchHomepageData } from "../data/sanity-data-fetch";
 import { testimonialsProps } from "../data/testimonialSectionData";
 import { getImageSource, sanitizeString } from "../utils/utils";
-export const runtime = "experimental-edge";
 
 const Particles = dynamic(() => import("../components/ParticlesContainer"), {
   ssr: false,
@@ -30,17 +29,10 @@ const Circles = dynamic(() => import("../components/Circles"), {
 });
 
 export async function getServerSideProps() {
-  try {
-    const homepageData = await fetchHomepageData();
-    return {
-      props: homepageData || {}, // Ensure we always return an object
-    };
-  } catch (error) {
-    console.error('Error fetching homepage data:', error);
-    return {
-      props: {}, 
-    };
-  }
+  const homepageData = await fetchHomepageData();
+  return {
+    props: homepageData,
+  };
 }
 
 const Home = ({
