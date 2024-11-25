@@ -201,7 +201,7 @@ const Home = ({
         ? bgImageLarge
         : bgImageSmall;
     setBgImage(responsiveBgImage);
-  }, []);
+  }, [bgImageDesktopUrl, bgImageMobileUrl]);
 
   return (
     <div className="relative flex flex-col ">
