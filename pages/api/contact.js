@@ -1,6 +1,6 @@
 import { uuid } from "@sanity/uuid";
 import axios from "axios";
-
+export const runtime = 'edge';
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { name, email, phone, createdAt, message } = req.body;

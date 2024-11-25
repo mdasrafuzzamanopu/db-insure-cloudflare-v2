@@ -1,0 +1,73 @@
+export const insuranceFormProps = {
+  type: "ContactSection",
+  elementId: "contact",
+  colors: "colors-h",
+  backgroundSize: "full",
+  title: "Get a General Liability Quote!!",
+  text: "Fast and Easy Within 5 Minutes",
+  form: {
+    type: "FormBlock",
+    variant: "variant-a",
+    elementId: "Contractors Insurance contact",
+    action: "https://formkeep.com/f/babc8e8419cf",
+    destination: "",
+    fields: [
+      {
+        type: "TextFormControl",
+        name: "First Name",
+        label: "First Name",
+        hideLabel: false,
+        placeholder: "First Name",
+        isRequired: true,
+        width: "1/2",
+      },
+      {
+        type: "TextFormControl",
+        name: "Last Name",
+        label: "Last Name",
+        placeholder: "Last Name",
+        isRequired: true,
+        width: "1/2",
+      },
+      {
+        type: "EmailFormControl",
+        name: "email",
+        label: "Email",
+        placeholder: "Your email",
+        isRequired: true,
+        width: "1/2",
+      },
+      {
+        type: "TextFormControl",
+        name: "Phone Number",
+        label: "Phone Number",
+        placeholder: "Phone Number",
+        isRequired: true,
+        width: "1/2",
+      },
+    ],
+    submitLabel: "Get My Quote Now!",
+  },
+  media: {
+    type: "ImageBlock",
+    url: "/Contact page final.png",
+    altText: "Contractors Insurance",
+  },
+  styles: {
+    self: {
+      height: "auto",
+      width: "wide",
+      margin: ["mt-0", "mb-0", "ml-0", "mr-0"],
+      padding: ["pt-12", "pb-12", "pl-4", "pr-4"],
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+    },
+    title: {
+      textAlign: "left",
+    },
+    text: {
+      textAlign: "left",
+    },
+  },
+};

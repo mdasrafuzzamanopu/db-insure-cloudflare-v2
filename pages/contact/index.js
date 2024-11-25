@@ -7,7 +7,7 @@ import { BsArrowRight } from "react-icons/bs";
 import Loader from "../../components/Loader";
 import { fadeIn } from "../../variants";
 import axios from "axios";
-
+export const runtime = "experimental-edge";
 const Contact = () => {
   const {
     register,

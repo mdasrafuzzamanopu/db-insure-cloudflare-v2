@@ -7,7 +7,7 @@ import { RichTextComponents } from "../../components/RichTextComponents";
 import { fetchAboutData } from "../../data/sanity-data-fetch";
 import { sanitizeString } from "../../utils/utils";
 import { fadeIn } from "../../variants";
-
+export const runtime = "experimental-edge";
 export async function getServerSideProps() {
   const { heading, redWords, description, image } = await fetchAboutData();
   return {

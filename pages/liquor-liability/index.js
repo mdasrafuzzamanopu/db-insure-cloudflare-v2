@@ -16,7 +16,7 @@ import { featuredItems2Props } from "../../data/featuredItemsData";
 import { fetchLiquorLiabilityData } from "../../data/sanity-data-fetch";
 import { testimonialsProps } from "../../data/testimonialSectionData";
 import { getImageSource, sanitizeString } from "../../utils/utils";
-
+export const runtime = "experimental-edge";
 const Particles = dynamic(() => import("../../components/ParticlesContainer"), {
   ssr: false,
 });

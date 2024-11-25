@@ -7,7 +7,7 @@ import { fetchThankData } from "../../data/sanity-data-fetch";
 const DEFAULT_TITLE = "Thank you";
 const DEFAULT_MESSAGE = "Your message was sent successfully";
 const DEFAULT_IMAGE = "/laptop.png";
-
+export const runtime = "experimental-edge";
 export async function getServerSideProps() {
   const { title, message, thankbgImage, thankbgImageUrl } =
     await fetchThankData();
