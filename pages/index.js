@@ -21,12 +21,7 @@ export const runtime = "experimental-edge";
 const Particles = dynamic(() => import("../components/ParticlesContainer"), {
   ssr: false,
 });
-// const ParticlesMobile = dynamic(
-//   () => import("../components/ParticlesContainerMobile"),
-//   {
-//     ssr: false,
-//   }
-// );
+
 const Bulb = dynamic(() => import("../components/Bulb"), {
   ssr: false,
 });
@@ -43,9 +38,7 @@ export async function getServerSideProps() {
   } catch (error) {
     console.error('Error fetching homepage data:', error);
     return {
-      props: {}, // Return empty props on error
-      // Optionally add notFound: true if you want to show 404 page on error
-      // notFound: true,
+      props: {}, 
     };
   }
 }

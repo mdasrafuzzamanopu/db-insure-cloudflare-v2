@@ -74,13 +74,18 @@ function HeroSection(props) {
         <Image
           // src={buttonImage}
           src="/hero-btn.webp"
-          alt="phone icon"
+          alt="Phone icon for Contractors Insurance"
           aria-label="Contractors Insurance"
           id="Contractors Insurance"
-          className="w-[240px] md:w-auto h-12 inline-flex items-center justify-center font-medium tracking-normal no-underline transition-all duration-300 ease-in-out bg-transparent border-2 border-[rgb(245,245,245)] rounded-md cursor-pointer   text-transform-none"
+          priority 
+          placeholder="blur"
+          blurDataURL="data:image/webp;base64,..." 
+          width={240} 
+          height={48} 
+          className="w-[240px] md:w-auto h-12 inline-flex items-center justify-center font-medium tracking-normal no-underline transition-all duration-300 ease-in-out bg-transparent border-2 border-[rgb(245,245,245)] rounded-md cursor-pointer text-transform-none"
           style={{
             filter: "saturate(1.2)",
-            boxShadow: "0px 0px 8px 1px rgba(245,245,245)",
+            boxShadow: "0px 0px 8px 1px rgba(245,245,245,0.5)", // Reduced opacity for better visual appeal
           }}
         />
       </div>
