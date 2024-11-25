@@ -50,20 +50,6 @@ function HeroSection(props) {
   );
   const renderButtons = () => (
     <>
-      {/* <button
-        aria-label="Contractors Insurance"
-        id="Contractors Insurance"
-        className="w-[240px] md:w-auto inline-flex items-center justify-center py-3 font-medium tracking-normal text-center text-white no-underline rounded-md transition-all duration-150 ease-in-out bg-[#125b9a]  border-white cursor-pointer hover:bg-[#18446a] px-7 text-transform-none"
-        onClick={() => {
-          contactRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
-        }}
-      >
-      
-        <span>Get My Quote Now</span>
-      </button> */}
-
       <div
         onClick={() => {
           contactRef.current.scrollIntoView({
