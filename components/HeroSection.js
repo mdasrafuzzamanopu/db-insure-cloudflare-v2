@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { appendStateName, getChunks } from "../utils/utils";
+import Image from "next/image";
 function HeroSection(props) {
   const { subHeading, contactRef, heading, redWords } = props;
 
@@ -70,7 +71,7 @@ function HeroSection(props) {
           });
         }}
       >
-        <img
+        <Image
           // src={buttonImage}
           src="/hero-btn.webp"
           alt="phone icon"

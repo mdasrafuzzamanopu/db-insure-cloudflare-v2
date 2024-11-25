@@ -44,7 +44,7 @@ const Header = () => {
             </Link>
             {isMapRoute && STATE_IMAGES[stateName] && (
               <div className="ml-4">
-                <img
+                <Image
                   src={STATE_IMAGES[stateName]}
                   width={50}
                   height={50}
