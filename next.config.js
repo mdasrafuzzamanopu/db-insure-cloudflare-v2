@@ -60,7 +60,6 @@ const nextConfig = {
     MAXMIND_LICENSE_KEY: process.env.MAXMIND_LICENSE_KEY,
     IMAGE_SOURCE: process.env.IMAGE_SOURCE,
   },
-  output: 'export',
 };
 
 module.exports = nextConfig;
