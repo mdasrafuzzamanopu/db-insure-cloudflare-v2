@@ -1,42 +1,42 @@
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
-import HeroSection from "../components/HeroSection";
-import ContactSection from "../components/ContactSection";
-import FeaturedItemsSection from "../components/FeaturedItemsSection";
-import FeatureHighlightSection from "../components/FeatureHighlightSection";
-import TestimonialsSection from "../components/TestimonialsSection";
-import ServicesSection from "../components/ServicesSection";
-import { insuranceFormProps } from "../data/contactSectionData";
-import ProjectHero from "../components/ProjectHero";
+import HeroSection from "../../components/HeroSection";
+import ContactSection from "../../components/ContactSection";
+import FeaturedItemsSection from "../../components/FeaturedItemsSection";
+import FeatureHighlightSection from "../../components/FeatureHighlightSection";
+import TestimonialsSection from "../../components/TestimonialsSection";
+import ServicesSection from "../../components/ServicesSection";
+import { insuranceFormProps } from "../../data/contactSectionData";
+import ProjectHero from "../../components/ProjectHero";
 import {
   featureHighlights2Props,
   featureHighlightsProps,
-} from "../data/featuredHighlightsData";
-import { featuredItems2Props } from "../data/featuredItemsData";
-import { fetchHomepageData } from "../data/sanity-data-fetch";
-import { testimonialsProps } from "../data/testimonialSectionData";
-import { getImageSource, sanitizeString } from "../utils/utils";
+} from "../../data/featuredHighlightsData";
+import { featuredItems2Props } from "../../data/featuredItemsData";
+import { fetchLiquorLiabilityData } from "../../data/sanity-data-fetch";
+import { testimonialsProps } from "../../data/testimonialSectionData";
+import { getImageSource, sanitizeString } from "../../utils/utils";
 
-const Particles = dynamic(() => import("../components/ParticlesContainer"), {
+const Particles = dynamic(() => import("../../components/ParticlesContainer"), {
   ssr: false,
 });
 // const ParticlesMobile = dynamic(
-//   () => import("../components/ParticlesContainerMobile"),
+//   () => import("../../components/ParticlesContainerMobile"),
 //   {
 //     ssr: false,
 //   }
 // );
-const Bulb = dynamic(() => import("../components/Bulb"), {
+const Bulb = dynamic(() => import("../../components/Bulb"), {
   ssr: false,
 });
-const Circles = dynamic(() => import("../components/Circles"), {
+const Circles = dynamic(() => import("../../components/Circles"), {
   ssr: false,
 });
 
 export async function getServerSideProps() {
-  const homepageData = await fetchHomepageData();
+  const liquorLiabilityData = await fetchLiquorLiabilityData();
   return {
-    props: homepageData,
+    props: liquorLiabilityData,
   };
 }
 
@@ -82,10 +82,6 @@ const Home = ({
     ...insuranceFormProps,
     title: contactFormTitle,
     text: contactFormSubTitle,
-    form: {
-      ...insuranceFormProps.form,
-      elementId: "contractor-insurance",
-    },
     ...(contactImage && {
       media: {
         type: "ImageBlock",
@@ -93,6 +89,10 @@ const Home = ({
         altText: "Contact Form Image",
       },
     }),
+    form: {
+      ...insuranceFormProps.form,
+      elementId: "liqour-liability-form",
+    },
   };
 
   const commercialConstructionData = {
@@ -104,7 +104,7 @@ const Home = ({
         type: "FeaturedItem",
         title: commercialConstructionItem.constructionTitle || "",
         text: commercialConstructionItem.constructionTitle
-          ? `<p>${commercialConstructionItem.constructionShortDescription}</p>`
+          ? commercialConstructionItem.constructionShortDescription
           : "",
         featuredImage: {
           type: "ImageBlock",
@@ -215,6 +215,7 @@ const Home = ({
           heading={heading}
           subHeading={subHeading}
           redWords={redWords}
+          // stateName={stateName}
           contactRef={contactRef}
         />
         <div className="absolute bottom-0 right-0 z-30 w-full h-full">
@@ -247,6 +248,7 @@ const Home = ({
           services={services}
           servicesTitle={servicesTitle}
           servicesSubtitle={servicesSubtitle}
+          // stateName={stateName}
         />
         <FeaturedItemsSection {...commercialConstructionData} />
         <div className="flex justify-center mt-12 mb-12">

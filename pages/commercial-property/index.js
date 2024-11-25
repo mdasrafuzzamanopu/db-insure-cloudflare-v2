@@ -1,42 +1,37 @@
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
-import HeroSection from "../components/HeroSection";
-import ContactSection from "../components/ContactSection";
-import FeaturedItemsSection from "../components/FeaturedItemsSection";
-import FeatureHighlightSection from "../components/FeatureHighlightSection";
-import TestimonialsSection from "../components/TestimonialsSection";
-import ServicesSection from "../components/ServicesSection";
-import { insuranceFormProps } from "../data/contactSectionData";
-import ProjectHero from "../components/ProjectHero";
+import ContactSection from "../../components/ContactSection";
+import FeaturedItemsSection from "../../components/FeaturedItemsSection";
+import FeatureHighlightSection from "../../components/FeatureHighlightSection";
+import TestimonialsSection from "../../components/TestimonialsSection";
+import ServicesSection from "../../components/ServicesSection";
+import { insuranceFormProps } from "../../data/contactSectionData";
+import ProjectHero from "../../components/ProjectHero";
 import {
   featureHighlights2Props,
   featureHighlightsProps,
-} from "../data/featuredHighlightsData";
-import { featuredItems2Props } from "../data/featuredItemsData";
-import { fetchHomepageData } from "../data/sanity-data-fetch";
-import { testimonialsProps } from "../data/testimonialSectionData";
-import { getImageSource, sanitizeString } from "../utils/utils";
+} from "../../data/featuredHighlightsData";
+import { featuredItems2Props } from "../../data/featuredItemsData";
+import { fetchCommercialPropertyData } from "../../data/sanity-data-fetch";
+import { testimonialsProps } from "../../data/testimonialSectionData";
+import { getImageSource, sanitizeString } from "../../utils/utils";
+import HeroSection from "../../components/HeroSection";
 
-const Particles = dynamic(() => import("../components/ParticlesContainer"), {
+const Particles = dynamic(() => import("../../components/ParticlesContainer"), {
   ssr: false,
 });
-// const ParticlesMobile = dynamic(
-//   () => import("../components/ParticlesContainerMobile"),
-//   {
-//     ssr: false,
-//   }
-// );
-const Bulb = dynamic(() => import("../components/Bulb"), {
+
+const Bulb = dynamic(() => import("../../components/Bulb"), {
   ssr: false,
 });
-const Circles = dynamic(() => import("../components/Circles"), {
+const Circles = dynamic(() => import("../../components/Circles"), {
   ssr: false,
 });
 
 export async function getServerSideProps() {
-  const homepageData = await fetchHomepageData();
+  const commercialPropertyData = await fetchCommercialPropertyData();
   return {
-    props: homepageData,
+    props: commercialPropertyData,
   };
 }
 
@@ -82,10 +77,6 @@ const Home = ({
     ...insuranceFormProps,
     title: contactFormTitle,
     text: contactFormSubTitle,
-    form: {
-      ...insuranceFormProps.form,
-      elementId: "contractor-insurance",
-    },
     ...(contactImage && {
       media: {
         type: "ImageBlock",
@@ -93,6 +84,10 @@ const Home = ({
         altText: "Contact Form Image",
       },
     }),
+    form: {
+      ...insuranceFormProps.form,
+      elementId: "commercial-property-form",
+    },
   };
 
   const commercialConstructionData = {
@@ -104,7 +99,7 @@ const Home = ({
         type: "FeaturedItem",
         title: commercialConstructionItem.constructionTitle || "",
         text: commercialConstructionItem.constructionTitle
-          ? `<p>${commercialConstructionItem.constructionShortDescription}</p>`
+          ? commercialConstructionItem.constructionShortDescription
           : "",
         featuredImage: {
           type: "ImageBlock",
@@ -143,6 +138,7 @@ const Home = ({
     featureHighlights2Image,
     featureHighlights2ImageUrl
   );
+
   const featureHighlights2Data = {
     ...featureHighlights2Props,
     label: featureHighlights2title,
@@ -155,10 +151,12 @@ const Home = ({
       },
     }),
   };
+
   const testimonialImage = getImageSource(
     testimonialsSectionImage,
     testimonialsSectionImageUrl
   );
+
   const testimonialsPropsData = {
     ...testimonialsProps,
     testimonials: [
@@ -193,6 +191,7 @@ const Home = ({
       },
     },
   };
+
   useEffect(() => {
     const bgImageLarge = bgImageDesktopUrl;
     const bgImageSmall = bgImageMobileUrl;
@@ -215,6 +214,7 @@ const Home = ({
           heading={heading}
           subHeading={subHeading}
           redWords={redWords}
+          // stateName={stateName}
           contactRef={contactRef}
         />
         <div className="absolute bottom-0 right-0 z-30 w-full h-full">
@@ -239,7 +239,7 @@ const Home = ({
           />
         </>
       )}
-      <div className="flex flex-col items-center w-full">
+      <div className="w-full">
         <div ref={contactRef} className="flex justify-center">
           <ContactSection {...contactFormData} />
         </div>
@@ -247,6 +247,7 @@ const Home = ({
           services={services}
           servicesTitle={servicesTitle}
           servicesSubtitle={servicesSubtitle}
+          // stateName={stateName}
         />
         <FeaturedItemsSection {...commercialConstructionData} />
         <div className="flex justify-center mt-12 mb-12">
