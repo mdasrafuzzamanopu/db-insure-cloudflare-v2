@@ -82,45 +82,8 @@ export const fetchHomepageData = async () => {
       featureHighlightImageUrl,
     };
   } catch (error) {
-    return {
-      heading: "",
-      subHeading: "",
-      redWords: [],
-      bgImageDesktop: "",
-      bgImageDesktopUrl: "",
-      bgImageMobile: "",
-      bgImageMobileUrl: "",
-      contactFormTitle: "",
-      contactFormSubTitle: "",
-      contactFormImage: "",
-      contactFormImageUrl: "",
-      servicesTitle: "",
-      servicesSubtitle: "",
-      services: "",
-      youtubeVideoHeading: "",
-      youtubeVideoTitle: "",
-      youtubeVideoDescription: "",
-      youtubeVideoUrl: "",
-      contractorInsuranceTitle: "",
-      contractorInsuranceSubTitle: "",
-      commercialConstructionTitle: "",
-      commercialConstructionSubTitle: "",
-      featureHighlightLable: "",
-      featureHighlightText: "",
-      featureHighlights2title: "",
-      featureHighlights2text: "",
-      featureHighlights2Image: "",
-      featureHighlights2ImageUrl: "",
-      testimonialsSectionQuote: "",
-      testimonialsSectionName: "",
-      testimonialsSectionPost: "",
-      contractorInsuranceItems: "",
-      commercialConstructionItems: "",
-      testimonialsSectionImage: "",
-      testimonialsSectionImageUrl: "",
-      featureHighlightImage: "",
-      featureHighlightImageUrl: "",
-    };
+    console.error('Error fetching data from Sanity:', error);
+    return null;
   }
 };
 

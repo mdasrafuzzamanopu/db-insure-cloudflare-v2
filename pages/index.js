@@ -16,7 +16,6 @@ import { featuredItems2Props } from "../data/featuredItemsData";
 import { fetchHomepageData } from "../data/sanity-data-fetch";
 import { testimonialsProps } from "../data/testimonialSectionData";
 import { getImageSource, sanitizeString } from "../utils/utils";
-export const runtime = "experimental-edge";
 const Particles = dynamic(() => import("../components/ParticlesContainer"), {
   ssr: false,
 });
@@ -34,10 +33,19 @@ const Circles = dynamic(() => import("../components/Circles"), {
 });
 
 export async function getServerSideProps() {
-  const homepageData = await fetchHomepageData();
-  return {
-    props: homepageData,
-  };
+  try {
+    const homepageData = await fetchHomepageData();
+    return {
+      props: homepageData || {}, // Ensure we always return an object
+    };
+  } catch (error) {
+    console.error('Error fetching homepage data:', error);
+    return {
+      props: {}, // Return empty props on error
+      // Optionally add notFound: true if you want to show 404 page on error
+      // notFound: true,
+    };
+  }
 }
 
 const Home = ({
@@ -201,7 +209,7 @@ const Home = ({
         ? bgImageLarge
         : bgImageSmall;
     setBgImage(responsiveBgImage);
-  }, [bgImageDesktopUrl, bgImageMobileUrl]);
+  }, []);
 
   return (
     <div className="relative flex flex-col ">

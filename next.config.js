@@ -32,6 +32,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    domains: ['your-domain.com'], // Add your image domains here
   },
   redirects: async () => [
     {
