@@ -171,7 +171,7 @@ const Home = ({
         style={{
           backgroundImage: `url(${bgImage})`,
         }}
-        className="relative min-h-[100vh] flex flex-col justify-start md:justify-center items-center py-24 md:py-0 bg-center bg-cover"
+        className="relative min-h-[100vh] flex flex-col justify-start md:justify-center items-center py-24 md:py-0 bg-center bg-cover z-20"
       >
         <HeroSection
           heading={heading}
@@ -179,11 +179,15 @@ const Home = ({
           redWords={redWords}
           contactRef={contactRef}
         />
-        <Suspense fallback={<div>Loading...</div>}>
-          {typeof window !== "undefined" && window.innerWidth > 768 && (
-            <Particles />
+        <div className="absolute bottom-0 right-0 z-30 w-full h-full">
+          {typeof window !== "undefined" && window.innerWidth > 768 ? (
+            <Suspense fallback={null}>
+              <Particles />
+            </Suspense>
+          ) : (
+            <Suspense fallback={null}>{null}</Suspense>
           )}
-        </Suspense>
+        </div>
       </div>
 
       {/* Non-critical visual elements */}
